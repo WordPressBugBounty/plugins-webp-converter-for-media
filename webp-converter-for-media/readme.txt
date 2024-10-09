@@ -68,6 +68,12 @@ That's all! Your website is already loading faster!
 
 == Frequently Asked Questions ==
 
+= How can I report security bugs? =
+
+You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities.
+
+[Report a security vulnerability.](https://patchstack.com/database/vdp/webp-converter-for-media)
+
 = How to get technical support? (before you ask for help) =
 
 Before you add a new thread, **read all other questions in this FAQ and other threads in [the support forum](https://url.mattplugins.com/converter-plugin-faq-technical-support-forum) first**. Perhaps someone had a similar problem and it has been resolved.
