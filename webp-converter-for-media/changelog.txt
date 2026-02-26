@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 6.5.4 (2026-02-26) =
+* `[Fixed]` Displaying notification about Cloudflare cache
+
 = 6.5.3 (2026-01-24) =
 * `[Changed]` The Pass Thru loading mode is now restricted to standard WordPress directory structures only
 
