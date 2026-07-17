@@ -5,7 +5,7 @@ Tags: convert webp, webp, optimize images, image optimization, compress images
 Requires at least: 4.9
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 6.6.1
+Stable tag: 6.6.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -308,6 +308,9 @@ Current list of supported CDN servers:
 5. Ability to manually undo optimization of selected image
 
 == Changelog ==
+
+= 6.6.2 (2026-07-17) =
+* `[Changed]` Error detection of non-working redirects
 
 = 6.6.1 (2026-06-03) =
 * `[Added]` Blocking of automatic image conversion when uploading images to Media Library during some server configuration errors

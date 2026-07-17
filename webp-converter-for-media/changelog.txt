@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 6.6.2 (2026-07-17) =
+* `[Changed]` Error detection of non-working redirects
+
 = 6.6.1 (2026-06-03) =
 * `[Added]` Blocking of automatic image conversion when uploading images to Media Library during some server configuration errors
 * `[Added]` Blocking of automatic image conversion via WP-Cron during some server configuration errors
