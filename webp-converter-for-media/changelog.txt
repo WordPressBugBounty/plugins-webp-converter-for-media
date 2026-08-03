@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 6.6.3 (2026-08-03) =
+* `[Fixed]` Fatal error with undefined constant CURLINFO_SIZE_DOWNLOAD_T on old versions of cURL library
+
 = 6.6.2 (2026-07-17) =
 * `[Changed]` Error detection of non-working redirects
 
