@@ -55,6 +55,7 @@ class ComposerStaticInit977a71a7bb63d9fc0c8d6b8913a12a29
         'WebpConverter\\Conversion\\Directory\\SourceDirectory' => __DIR__ . '/../..' . '/src/Conversion/Directory/SourceDirectory.php',
         'WebpConverter\\Conversion\\Directory\\UploadsDirectory' => __DIR__ . '/../..' . '/src/Conversion/Directory/UploadsDirectory.php',
         'WebpConverter\\Conversion\\Directory\\UploadsWebpcDirectory' => __DIR__ . '/../..' . '/src/Conversion/Directory/UploadsWebpcDirectory.php',
+        'WebpConverter\\Conversion\\Endpoint\\CloudflareZonesEndpoint' => __DIR__ . '/../..' . '/src/Conversion/Endpoint/CloudflareZonesEndpoint.php',
         'WebpConverter\\Conversion\\Endpoint\\CronConversionEndpoint' => __DIR__ . '/../..' . '/src/Conversion/Endpoint/CronConversionEndpoint.php',
         'WebpConverter\\Conversion\\Endpoint\\EndpointAbstract' => __DIR__ . '/../..' . '/src/Conversion/Endpoint/EndpointAbstract.php',
         'WebpConverter\\Conversion\\Endpoint\\EndpointIntegrator' => __DIR__ . '/../..' . '/src/Conversion/Endpoint/EndpointIntegrator.php',

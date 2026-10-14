@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 6.7.0 (2026-10-14) =
+* `[Added]` Dynamic delivery of WebP and AVIF files on Cloudflare free plans
+* `[Added]` Automatic configuration of Cache Rules for Cloudflare CDN
+
 = 6.6.5 (2026-08-18) =
 * `[Added]` Support for WordPress 7.1
 

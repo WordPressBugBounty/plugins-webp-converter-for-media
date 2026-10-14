@@ -40,6 +40,7 @@ return array(
     'WebpConverter\\Conversion\\Directory\\SourceDirectory' => $baseDir . '/src/Conversion/Directory/SourceDirectory.php',
     'WebpConverter\\Conversion\\Directory\\UploadsDirectory' => $baseDir . '/src/Conversion/Directory/UploadsDirectory.php',
     'WebpConverter\\Conversion\\Directory\\UploadsWebpcDirectory' => $baseDir . '/src/Conversion/Directory/UploadsWebpcDirectory.php',
+    'WebpConverter\\Conversion\\Endpoint\\CloudflareZonesEndpoint' => $baseDir . '/src/Conversion/Endpoint/CloudflareZonesEndpoint.php',
     'WebpConverter\\Conversion\\Endpoint\\CronConversionEndpoint' => $baseDir . '/src/Conversion/Endpoint/CronConversionEndpoint.php',
     'WebpConverter\\Conversion\\Endpoint\\EndpointAbstract' => $baseDir . '/src/Conversion/Endpoint/EndpointAbstract.php',
     'WebpConverter\\Conversion\\Endpoint\\EndpointIntegrator' => $baseDir . '/src/Conversion/Endpoint/EndpointIntegrator.php',
