@@ -5,7 +5,7 @@ Tags: convert webp, webp, optimize images, image optimization, compress images
 Requires at least: 4.9
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 6.7.0
+Stable tag: 6.7.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -308,6 +308,9 @@ Current list of supported CDN servers:
 5. Ability to manually undo optimization of selected image
 
 == Changelog ==
+
+= 6.7.1 (2026-10-30) =
+* `[Removed]` Recommendation for AVIF format from Site Health
 
 = 6.7.0 (2026-10-14) =
 * `[Added]` Dynamic delivery of WebP and AVIF files on Cloudflare free plans
