@@ -170,14 +170,15 @@ class ErrorDetectorAggregator implements HookableInterface {
 			$this->cached_errors[] = $new_error;
 		}
 
+		if ( $new_error = ( new CloudflareStatusDetector( $this->plugin_data ) )->get_error() ) {
+			$this->cached_errors[] = $new_error;
+		}
+
 		if ( $this->cached_errors ) {
 			return $this->cached_errors;
 		}
 
 		if ( $new_error = ( new SettingsIncorrectDetector( $this->plugin_data ) )->get_error() ) {
-			$this->cached_errors[] = $new_error;
-		}
-		if ( $new_error = ( new CloudflareStatusDetector( $this->plugin_data ) )->get_error() ) {
 			$this->cached_errors[] = $new_error;
 		}
 

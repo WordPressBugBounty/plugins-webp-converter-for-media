@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 6.7.2 (2026-11-05) =
+* `[Fixed]` Handling of existing rules when configuring Cloudflare Cache Rules via API
+
 = 6.7.1 (2026-10-30) =
 * `[Removed]` Recommendation for AVIF format from Site Health
 

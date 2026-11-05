@@ -65,7 +65,7 @@ class CloudflareConfigurator implements HookableInterface {
 		}
 
 		if ( ! in_array( $cache_settings['http_code'], [ 200, 404 ] ) ) {
-			OptionsAccessManager::update_option( self::REQUEST_CACHE_SETTINGS_OPTION, $cache_settings['http_code'] );
+			OptionsAccessManager::update_option( self::REQUEST_CACHE_SETTINGS_OPTION, json_encode( $cache_settings ) );
 			return;
 		}
 
@@ -91,11 +91,21 @@ class CloudflareConfigurator implements HookableInterface {
 		);
 		$rules[] = $new_rule;
 
+		foreach ( $rules as $rule_index => $rule ) {
+			if ( is_array( $rule['action_parameters'] ?? null ) ) {
+				foreach ( $rule['action_parameters'] as $param_key => $param_value ) {
+					if ( $param_value === [] ) {
+						unset( $rules[ $rule_index ]['action_parameters'][ $param_key ] );
+					}
+				}
+			}
+		}
+
 		$response = $this->send_request( self::API_CACHE_SETTINGS_URL, 'PUT', [ 'rules' => $rules ] );
 		if ( $response !== null ) {
 			OptionsAccessManager::update_option(
 				self::REQUEST_CACHE_SETTINGS_OPTION,
-				( $response['http_code'] === 200 ) ? 'yes' : $response['http_code']
+				( $response['http_code'] === 200 ) ? 'yes' : json_encode( $response )
 			);
 		}
 	}
@@ -117,7 +127,7 @@ class CloudflareConfigurator implements HookableInterface {
 
 		OptionsAccessManager::update_option(
 			self::REQUEST_CACHE_PURGE_OPTION,
-			( $response['http_code'] === 200 ) ? 'yes' : $response['http_code']
+			( $response['http_code'] === 200 ) ? 'yes' : json_encode( $response )
 		);
 	}
 
