@@ -2,6 +2,7 @@
 
 namespace WebpConverter\Plugin;
 
+use WebpConverter\Conversion\ExcludedPathsOperator;
 use WebpConverter\HookableInterface;
 use WebpConverter\Loader\LoaderAbstract;
 use WebpConverter\Plugin\Activation\OutputDirectoryGenerator;
@@ -52,6 +53,10 @@ class ActivationHandler implements HookableInterface {
 		$saved_plugin_version = OptionsAccessManager::get_option( self::LATEST_VERSION_OPTION ) ?: '0.0.0';
 		if ( $this->plugin_info->get_plugin_version() === $saved_plugin_version ) {
 			return;
+		}
+
+		if ( version_compare( $saved_plugin_version, '6.7.3', '<' ) ) {
+			do_action( ExcludedPathsOperator::CLEANUP_ACTION_NAME );
 		}
 
 		do_action( LoaderAbstract::ACTION_NAME, true );

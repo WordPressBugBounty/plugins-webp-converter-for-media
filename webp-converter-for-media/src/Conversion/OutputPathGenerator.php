@@ -9,13 +9,13 @@ use WebpConverter\Conversion\Format\FormatFactory;
  */
 class OutputPathGenerator {
 
-	private FormatFactory $format_factory;
+	private ?FormatFactory $format_factory;
 
 	private ?string $path_wp_content_dir = null;
 
 	private ?string $path_output_dir = null;
 
-	public function __construct( FormatFactory $format_factory ) {
+	public function __construct( ?FormatFactory $format_factory = null ) {
 		$this->format_factory = $format_factory;
 	}
 
@@ -49,7 +49,7 @@ class OutputPathGenerator {
 			return [];
 		}
 
-		$extensions     = $this->format_factory->get_format_extensions();
+		$extensions     = $this->format_factory ? $this->format_factory->get_format_extensions() : [];
 		$path_extension = strtolower( pathinfo( $new_path, PATHINFO_EXTENSION ) );
 		$paths          = [];
 		foreach ( $extensions as $extension ) {
@@ -86,6 +86,28 @@ class OutputPathGenerator {
 		}
 
 		return sprintf( '%1$s/%2$s', $webp_root, $output_path );
+	}
+
+	/**
+	 * Generates source path from path of output directory.
+	 *
+	 * @param string $path Server path of output directory.
+	 *
+	 * @return string|null Server path for source directory.
+	 */
+	public function get_source_directory_path( string $path ): ?string {
+		$webp_root       = preg_replace( '/(\/|\\\\)/', DIRECTORY_SEPARATOR, $this->get_output_dir() ) ?: '';
+		$normalized_path = preg_replace( '/(\/|\\\\)/', DIRECTORY_SEPARATOR, $path ) ?: '';
+		if ( ( $webp_root === '' ) || ( strpos( $normalized_path, $webp_root ) !== 0 ) ) {
+			return null;
+		}
+
+		$source_path = trim( substr( $normalized_path, strlen( $webp_root ) ), '\/' );
+		if ( ! $source_path ) {
+			return null;
+		}
+
+		return sprintf( '%1$s/%2$s', $this->get_wp_content_dir(), $source_path );
 	}
 
 	/**

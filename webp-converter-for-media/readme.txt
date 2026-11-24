@@ -5,7 +5,7 @@ Tags: convert webp, webp, optimize images, image optimization, compress images
 Requires at least: 4.9
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 6.7.2
+Stable tag: 6.7.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -308,6 +308,10 @@ Current list of supported CDN servers:
 5. Ability to manually undo optimization of selected image
 
 == Changelog ==
+
+= 6.7.3 (2026-11-24) =
+* `[Security]` Added automatic exclusion of directories protected by deny-all rules in .htaccess files from image conversion (CVE-2026-135006)
+* `[Added]` Automatic cleanup of previously converted files from .htaccess-protected directories inside the /uploads-webpc directory after updating the plugin
 
 = 6.7.2 (2026-11-05) =
 * `[Fixed]` Handling of existing rules when configuring Cloudflare Cache Rules via API
