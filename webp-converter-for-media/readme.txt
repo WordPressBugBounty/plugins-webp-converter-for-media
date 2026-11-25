@@ -5,7 +5,7 @@ Tags: convert webp, webp, optimize images, image optimization, compress images
 Requires at least: 4.9
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 6.7.3
+Stable tag: 6.7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -308,6 +308,9 @@ Current list of supported CDN servers:
 5. Ability to manually undo optimization of selected image
 
 == Changelog ==
+
+= 6.7.4 (2026-11-24) =
+* `[Fixed]` Detection of .htaccess-protected directories so rules inside root directories like /uploads are ignored
 
 = 6.7.3 (2026-11-24) =
 * `[Security]` Added automatic exclusion of directories protected by deny-all rules in .htaccess files from image conversion (CVE-2026-135006)

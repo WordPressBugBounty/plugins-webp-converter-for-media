@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 6.7.4 (2026-11-24) =
+* `[Fixed]` Detection of .htaccess-protected directories so rules inside root directories like /uploads are ignored
+
 = 6.7.3 (2026-11-24) =
 * `[Security]` Added automatic exclusion of directories protected by deny-all rules in .htaccess files from image conversion (CVE-2026-135006)
 * `[Added]` Automatic cleanup of previously converted files from .htaccess-protected directories inside the /uploads-webpc directory after updating the plugin

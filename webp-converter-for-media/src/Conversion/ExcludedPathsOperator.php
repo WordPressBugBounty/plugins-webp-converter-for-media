@@ -155,7 +155,7 @@ class ExcludedPathsOperator implements HookableInterface {
 	}
 
 	/**
-	 * Checks if directory or any parent directory inside WordPress root contains deny-all .htaccess rules.
+	 * Checks if directory or any parent subdirectory contains deny-all .htaccess rules.
 	 *
 	 * @param string $server_path .
 	 *
@@ -167,13 +167,25 @@ class ExcludedPathsOperator implements HookableInterface {
 			$dir = dirname( $dir );
 		}
 
-		$root_dir = rtrim( str_replace( '\\', '/', PathsGenerator::get_wordpress_root_path() ), '/\\' );
+		$root_dir     = rtrim( str_replace( '\\', '/', PathsGenerator::get_wordpress_root_path() ), '/\\' );
+		$ignored_dirs = [
+			$root_dir,
+			rtrim( str_replace( '\\', '/', WP_CONTENT_DIR ), '/\\' ),
+		];
+		foreach ( [ 'cache', 'gallery', 'plugins', 'themes', 'uploads' ] as $dir_type ) {
+			$ignored_dirs[] = rtrim( str_replace( '\\', '/', (string) apply_filters( 'webpc_dir_path', '', $dir_type ) ), '/\\' );
+		}
+
 		while ( ( $root_dir !== '' ) && ( strpos( $dir, $root_dir . '/' ) === 0 ) ) {
+			if ( in_array( $dir, $ignored_dirs, true ) ) {
+				break;
+			}
+
 			if ( ! isset( $this->htaccess_cache[ $dir ] ) ) {
 				$htaccess                     = $dir . '/.htaccess';
 				$this->htaccess_cache[ $dir ] = is_file( $htaccess )
 					&& is_readable( $htaccess )
-					&& ( preg_match( '/(deny\s+from\s+all|require\s+all\s+denied)/i', (string) file_get_contents( $htaccess ) ) === 1 );
+					&& $this->contains_directory_deny_rule( (string) file_get_contents( $htaccess ) );
 			}
 
 			if ( $this->htaccess_cache[ $dir ] ) {
@@ -188,5 +200,28 @@ class ExcludedPathsOperator implements HookableInterface {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Verifies whether .htaccess content contains directory-wide access deny directives.
+	 *
+	 * @param string $content .
+	 *
+	 * @return bool
+	 */
+	private function contains_directory_deny_rule( string $content ): bool {
+		$cleaned = preg_replace( '/^\s*#.*$/m', '', $content ) ?? $content;
+		$cleaned = preg_replace_callback(
+			'/<(Files|FilesMatch)\b([^>]*)>(.*?)<\/\1>/is',
+			static function ( array $matches ): string {
+				if ( preg_match( '/(\*|\.\+|\b(?:jpe?g|png|gif|webp|avif)\b)/i', $matches[2] ) === 1 ) {
+					return $matches[0];
+				}
+				return '';
+			},
+			$cleaned
+		) ?? $cleaned;
+
+		return preg_match( '/(deny\s+from\s+all|require\s+all\s+denied)/i', $cleaned ) === 1;
 	}
 }
